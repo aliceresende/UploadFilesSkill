@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schemas.botframework.com/schemas/skills/v2.0/skill-manifest.json",
+  "$id": "SkillUpload",
+  "name": "Skill Upload File bot",
+  "version": "1.0",
+  "description": "This skill uploads a file and returns a URL to access it.",
+  "publisherName": "Microsoft",
+  "endpoints": [
+    {
+      "name": "default",
+      "protocol": "BotFrameworkV3",
+      "description": "Default endpoint for the skill",
+      "endpointUrl": "https://skillupload.azurewebsites.net/api/messages",
+      "msAppId": "13425b1c-3878-4919-bcad-eca779aca799"
+    }
+  ],
+  "activities": {
+    "receiveFile": {
+      "description": "Receives a file as an attachment and uploads it to Blob Storage, returning a URL.",
+      "type": "event",
+      "name": "receiveFile",
+      "resultValue": {
+        "$ref": "#/definitions/uploadFileResult"
+      }
+    }
+  },
+  "definitions": {
+    "uploadFileResult": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "title": "URL of the uploaded file"
+        }
+      }
+    }
+  }
+}
+
